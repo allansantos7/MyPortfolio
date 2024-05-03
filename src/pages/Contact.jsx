@@ -19,7 +19,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setCurrentAnimation("run");
+    setCurrentAnimation("hit");
 
     console.log(import.meta.env.VITE_APP_EMAILJS_SERVICE_ID);
     emailjs
@@ -40,7 +40,10 @@ const Contact = () => {
         // TODO: Show success message
         // TODO: Hide an alert
 
-        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          setCurrentAnimation("idle");
+          setForm({ name: "", email: "", message: "" });
+        }, [3000]);
       })
       .catch((error) => {
         setIsLoading(false);
